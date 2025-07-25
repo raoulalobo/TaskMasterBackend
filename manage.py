@@ -6,7 +6,15 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taskmarket.settings')
+    # Détecter automatiquement l'environnement
+    # Si on est sur Railway ou en production, utiliser settings_production
+    # Sinon utiliser settings par défaut pour le développement
+    if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
+        settings_module = 'taskmarket.settings_production'
+    else:
+        settings_module = 'taskmarket.settings'
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

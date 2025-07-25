@@ -1,0 +1,14 @@
+[variables]
+DJANGO_SETTINGS_MODULE = "taskmarket.settings_production"
+
+[phases.setup]
+nixPkgs = ["python3", "python3Packages.pip"]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[phases.build]
+cmds = ["python manage.py collectstatic --noinput"]
+
+[start]
+cmd = "python manage.py migrate && gunicorn taskmarket.wsgi --bind 0.0.0.0:$PORT --log-file -"
