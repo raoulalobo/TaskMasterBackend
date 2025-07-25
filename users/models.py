@@ -3,7 +3,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-    """Modèle utilisateur personnalisé avec types d'utilisateurs spécifiques"""
     USER_TYPE_CHOICES = (
         ('landowner', 'Landowner'),
         ('buyer', 'Buyer'),
