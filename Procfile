@@ -1,0 +1,1 @@
+web: gunicorn taskmarket.wsgi --log-file -
