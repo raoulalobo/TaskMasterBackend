@@ -3,7 +3,6 @@ from users.models import User
 
 
 class Property(models.Model):
-    """Modèle pour les propriétés immobilières"""
     PROPERTY_TYPES = (
         ('land', 'Land'),
         ('house', 'House'),
@@ -27,7 +26,6 @@ class Property(models.Model):
 
 
 class PropertyImage(models.Model):
-    """Modèle pour les images des propriétés"""
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='property_images/')
     is_main = models.BooleanField(default=False)
